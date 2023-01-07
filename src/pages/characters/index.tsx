@@ -1,8 +1,6 @@
 import { characterService } from '@/modules/character'
 import { GetStaticProps } from 'next'
 import Head from 'next/head'
-// import Image from 'next/image'
-// import Link from 'next/link'
 import React from 'react'
 
 // type Props = {
@@ -19,8 +17,8 @@ function Characters () {
         <h1
           className="
             text-4xl
-            text-brown
-            first-letter:text-secondary
+            text-secondary
+            first-letter:text-primary
             first-letter:text-5xl
             font-semibold
             my-2
