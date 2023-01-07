@@ -16,11 +16,12 @@ export default function Document () {
         className="
           w-full
           min-h-screen
-          bg-green-300
-          dark:bg-darken
           text-daken
+          bg-green-50
+          dark:bg-darken
           dark:text-lighten
           transition-all
+          scroll-smooth
         "
       >
         <Main />

@@ -3,7 +3,7 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <footer className="w-full h-32 flex items-center justify-center drop-shadow-xl bg-primary dark:bg-shadow">
+    <footer className="w-full h-32 flex items-center justify-center">
       <div className="container flex items-center justify-between">
         <div className="flex items-center gap-2 text-2xl font-semibold">
           <Image
@@ -13,9 +13,9 @@ const Footer = () => {
             height={100}
             width={100}
           />
-          <span className="italic text-secondary dark:text-terciary">Show</span> &copy; - 2023
+          <span className="italic text-darken dark:text-primary">Show</span> &copy; - 2023
         </div>
-        <p className="text-xl text-secondary dark:text-primary">
+        <p className="text-xl text-darken dark:text-primary">
           Powered by{' '}
           <a
             href="https://mateusdev.com.br"
