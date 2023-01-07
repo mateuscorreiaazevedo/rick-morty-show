@@ -1,5 +1,5 @@
-import { settings } from '@/main/config'
 import axios, { AxiosInstance, AxiosResponse } from 'axios'
+import { settings } from '@/main/config'
 
 type HttpRequest = {
   url: string
@@ -14,7 +14,7 @@ export type HttpResponse<T = any> = {
   body: T
 }
 
-export class Service {
+export default class Service {
   private api: AxiosInstance
 
   constructor () {
