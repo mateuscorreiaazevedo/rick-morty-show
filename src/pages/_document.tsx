@@ -17,8 +17,8 @@ export default function Document () {
           w-full
           min-h-screen
           bg-gradient-to-br
-          from-primary
-          to-terciary
+          from-terciary
+          to-primary
           text-darken
           dark:text-lighten
           dark:bg-gradient-to-t

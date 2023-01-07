@@ -21,9 +21,9 @@ module.exports = {
         primary: '#6fe1ff',
         secondary: '#f67b39',
         terciary: '#10bba8',
-        darken: '#220a11',
+        darken: '#242424',
         lighten: '#fefe',
-        shadow: '#4c3c53',
+        shadow: '#363636',
       }
     },
   },
