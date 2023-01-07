@@ -12,7 +12,7 @@ type Routes = {
 
 const routes: Routes[] = [
   { label: 'Personagens', url: '/characters' },
-  { label: 'Locais', url: '/locations' },
+  { label: 'Localizações', url: '/locations' },
   { label: 'Episódios', url: '/episodes' },
   { label: 'Sobre', url: '/about' }
 ]
@@ -35,7 +35,7 @@ const Header = () => {
         justify-center
         bg-primary
         dark:bg-shadow
-        shadow-2xl
+        shadow-md
       "
     >
       <div className="container flex items-center justify-between">
@@ -83,10 +83,11 @@ const Header = () => {
                     group-hover/route:w-full
                     h-1
                     transition-all
+                    ease-in-out
                     rounded
                     bg-secondary
                     w-0
-                    ${router.pathname === route.url ? 'w-full' : ''}
+                    ${router.pathname === route.url ? 'w-4' : ''}
                   `}
                 />
               </li>

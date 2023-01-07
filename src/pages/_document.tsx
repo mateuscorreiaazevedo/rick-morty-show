@@ -16,14 +16,10 @@ export default function Document () {
         className="
           w-full
           min-h-screen
-          bg-gradient-to-br
-          from-terciary
-          to-primary
-          text-darken
+          bg-green-300
+          dark:bg-darken
+          text-daken
           dark:text-lighten
-          dark:bg-gradient-to-t
-          dark:from-darken
-          dark:to-darken
           transition-all
         "
       >
