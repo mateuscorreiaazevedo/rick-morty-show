@@ -20,8 +20,6 @@ const routes: Routes[] = [
 const Header = () => {
   const router = useRouter()
 
-  console.log(router.pathname)
-
   return (
     <header
       className="
@@ -31,10 +29,9 @@ const Header = () => {
         top-0
         flex
         items-center
-        justify-center
       "
     >
-      <div className="container px-4 rounded-3xl backdrop-blur-sm bg-primary-alpha dark:bg-gray-scale p-2 flex items-center justify-between">
+      <div className="container px-4 mx-auto rounded-3xl backdrop-blur-sm bg-primary-alpha dark:bg-gray-scale p-2 flex items-center justify-between">
         <div>
           <Tooltip label="Home">
             <Link href="/">

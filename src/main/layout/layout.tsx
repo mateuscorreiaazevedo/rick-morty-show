@@ -24,9 +24,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       <NextNProgress color="#f67b39" />
       <ToastContainer />
       <Header />
-      <section className='flex justify-center items-stretch'>
-        <main className="container my-4">{children}</main>
-      </section>
+        <main className=" container mx-auto my-4">{children}</main>
       <Footer />
     </>
   )
