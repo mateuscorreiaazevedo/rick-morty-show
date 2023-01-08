@@ -1,9 +1,10 @@
 import { Service } from '@/modules/core'
+import { characterConstants } from '..'
 
 class CharacterService extends Service {
   async getAll () {
     const response = await this.request<Characters>({
-      url: '/character'
+      url: characterConstants.GET_URL
     })
 
     switch (response.code) {

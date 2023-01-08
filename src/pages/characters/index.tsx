@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-empty-function */
 import { characterService } from '@/modules/character'
 import Pagination from 'react-js-pagination'
 import { GetStaticProps } from 'next'
