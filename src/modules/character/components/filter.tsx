@@ -20,7 +20,7 @@ const FilterCharacter = ({ setData, setLoading }: Props) => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target
-    setValues(prev => ({
+    setValues((prev) => ({
       ...prev,
       [name]: value
     }))
@@ -42,7 +42,7 @@ const FilterCharacter = ({ setData, setLoading }: Props) => {
           ...query,
           ...(values.gender && { gender: values.gender }),
           ...(values.name && { name: values.name }),
-          ...(values.status && { status: values.status }),
+          ...(values.status && { status: values.status })
         }
       })
       setData(response)
@@ -67,14 +67,9 @@ const FilterCharacter = ({ setData, setLoading }: Props) => {
   }
 
   return (
-    <section className="flex gap-3 items-center justify-between mx-6">
-      <SeachBar
-        name="name"
-        label="Nome"
-        placeholder="Insira o nome do personagem"
-        setChange={handleChange}
-      />
-      <div className="flex gap-3 items-center">
+    <section className="flex gap-3 lg:items-center md:items-center lg:justify-between mx-6 xl:flex-row lg:flex-row md:flex-col flex-col justify-center items-stretch">
+      <SeachBar name="name" label="Nome" placeholder="Insira o nome do personagem" setChange={handleChange} />
+      <div className="flex gap-1 items-center flex-col md:flex-row lg:flex-row">
         <Options
           setChange={handleChange}
           label="Gênero"
@@ -96,17 +91,10 @@ const FilterCharacter = ({ setData, setLoading }: Props) => {
             { label: 'Desconhecido', value: 'unknown' }
           ]}
         />
-        <Button
-          icon={<BsSearch />}
-          label="Pesquisar"
-          handleClick={handleSubmit}
-        />
-        <Button
-          icon={<BsXCircle />}
-          label="Limpar"
-          handleClick={clearFilter}
-          type='error'
-        />
+        <div className='flex gap-2'>
+          <Button icon={<BsSearch />} label="Pesquisar" handleClick={handleSubmit} />
+          <Button icon={<BsXCircle />} label="Limpar" handleClick={clearFilter} type="error" />
+        </div>
       </div>
     </section>
   )

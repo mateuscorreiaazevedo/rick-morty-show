@@ -25,7 +25,7 @@ export const Button = ({ handleClick, label, icon, type }: Props) => {
   }
 
   return (
-    <div className="h-20">
+    <div className="lg:h-20 h-fit">
         <button
           onClick={handleClick}
           className={`

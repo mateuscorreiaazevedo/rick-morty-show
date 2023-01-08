@@ -30,13 +30,7 @@ function Characters ({ data }: Props) {
 
       setPage(pageNum)
       setCharacters(response)
-      push({
-        pathname,
-        query: {
-          ...query,
-          page: pageNum
-        }
-      })
+      push({ pathname, query: { ...query, page: pageNum } })
     } catch (error) {
       setNotification((error as any).message)
     } finally {
@@ -61,7 +55,7 @@ function Characters ({ data }: Props) {
           setData={setCharacters}
           setLoading={setLoading}
         />
-        <section className="grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-3 mt-4">
+        <section className="grid xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-3 mt-4">
           {characters.results.map((character) => (
             <CardCharacter key={character.id} {...character} />
           ))}

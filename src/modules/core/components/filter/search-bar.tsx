@@ -9,8 +9,8 @@ type Props = {
 
 export const SeachBar = ({ label, setChange, placeholder, name }: Props) => {
   return (
-    <label className="w-full h-20 cursor-pointer">
-      <span className="text-lg">{label}:</span>
+    <label className="w-full md:h-20 lg:h-20 h-fit xl:h-20 cursor-pointer">
+      <span className="text-lg hidden md:block sm:hidden lg:block xl:block">{label}:</span>
       <input
         type="search"
         name={name}
@@ -27,6 +27,7 @@ export const SeachBar = ({ label, setChange, placeholder, name }: Props) => {
           dark:focus:outline-primary
           border-none
           placeholder:italic
+          shadow-md
         "
       />
     </label>

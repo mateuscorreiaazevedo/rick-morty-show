@@ -1,4 +1,4 @@
-import { FaCross, FaStar } from 'react-icons/fa'
+import { FaCross, FaQuestion, FaStar } from 'react-icons/fa'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
@@ -25,7 +25,9 @@ const Card = (props: Character) => {
         <p className="italic font-semibold first-letter:text-xl">{gender}</p>
         <div className="flex items-center gap-0.5">
           <span className="text-lg text-secondary dark:text-primary">
-            {status === 'Alive' ? <FaStar /> : <FaCross />}
+            {status === 'Alive' && <FaStar />}
+            {status === 'Dead' && <FaCross />}
+            {status === 'unknown' && <FaQuestion />}
           </span>
           <p className="text-xl transition-all">{status}</p>
         </div>
