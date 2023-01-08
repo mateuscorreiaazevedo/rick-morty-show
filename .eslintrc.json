@@ -33,6 +33,7 @@
     "@typescript-eslint/no-floating-promises": "off",
     "@typescript-eslint/comma-spacing": "off",
     "react/react-in-jsx-scope": "off",
+    "@typescript-eslint/no-empty-function": "warn",
     "@typescript-eslint/no-explicit-any": "off"
   }
 }

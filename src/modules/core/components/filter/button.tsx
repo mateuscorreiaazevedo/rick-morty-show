@@ -1,40 +1,51 @@
 import React from 'react'
-import { BsSearch } from 'react-icons/bs'
-import Tooltip from '../tooltip'
 
 type Props = {
   label: string
   handleClick: () => Promise<void>
-  tooltip: string
+  icon?: React.ReactNode
+  type?: 'default' | 'success' | 'warning'| 'error'
 }
 
-export const Button = ({ handleClick, tooltip, label }: Props) => {
+export const Button = ({ handleClick, label, icon, type }: Props) => {
+  let button = ''
+
+  switch (type) {
+    case 'success':
+      button = 'bg-green-400 hover:bg-green-500 text-white'
+      break
+    case 'error':
+      button = 'bg-red-400 hover:bg-red-500 text-white'
+      break
+    case 'warning':
+      button = 'bg-orange-400 hover:bg-orange-500 text-white'
+      break
+    default:
+      button = 'bg-primary hover:bg-blue-500 text-white dark:bg-secondary dark:hover:bg-pink-700'
+  }
+
   return (
     <div className="h-20">
-      <Tooltip label={tooltip}>
         <button
           onClick={handleClick}
-          className="
-        flex
-        items-center
-        justify-around
-        gap-2
-        mt-7
-        px-4
-        bg-primary
-        dark:bg-secondary
-        h-10
-        rounded-lg
-        text-white
-        font-normal
-        hover:bg-blue-300
-        dark:hover:bg-pink-700
-        transition-all
-        "
+          className={`
+            ${button}
+            flex
+            items-center
+            justify-around
+            gap-2
+            mt-7
+            px-4
+            h-10
+            rounded-lg
+            shadow-md
+            font-normal
+            transition-all
+            duration-300
+            `}
         >
-          <BsSearch className="text-lg" /> {label}
+          {icon} {label}
         </button>
-      </Tooltip>
     </div>
   )
 }

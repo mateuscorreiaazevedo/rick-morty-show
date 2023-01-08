@@ -1,27 +1,64 @@
 import { Button, Options, SeachBar, useNotification } from '@/modules/core'
+import { BsSearch, BsXCircle } from 'react-icons/bs'
+import { useRouter } from 'next/router'
 import { characterService } from '..'
 import React from 'react'
 
 type Props = {
-  setData: React.Dispatch<React.SetStateAction<Character[]>>
+  setData: React.Dispatch<React.SetStateAction<Characters>>
   setLoading: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const FilterCharacter = ({ setData, setLoading }: Props) => {
-  const [name, setName] = React.useState('')
-  const [gender, setGender] = React.useState('')
-  const [status, setStatus] = React.useState('')
+  const { query, pathname, push } = useRouter()
   const { setNotification } = useNotification()
+  const [values, setValues] = React.useState({
+    name: query.name,
+    gender: query.gender,
+    status: query.status
+  })
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target
+    setValues(prev => ({
+      ...prev,
+      [name]: value
+    }))
+  }
 
   const handleSubmit = async () => {
     setLoading(true)
     try {
       const response = await characterService.getAll({
-        gender,
-        name,
-        status
+        page: Number(query.page),
+        gender: values.gender?.toString(),
+        name: values.name?.toString(),
+        status: values.status?.toString()
       })
-      setData(response.results)
+
+      push({
+        pathname,
+        query: {
+          ...query,
+          ...(values.gender && { gender: values.gender }),
+          ...(values.name && { name: values.name }),
+          ...(values.status && { status: values.status }),
+        }
+      })
+      setData(response)
+    } catch (error) {
+      setNotification((error as any).message)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const clearFilter = async () => {
+    setLoading(true)
+    try {
+      const response = await characterService.getAll({})
+      push({ pathname })
+      setData(response)
     } catch (error) {
       setNotification((error as any).message)
     } finally {
@@ -31,10 +68,15 @@ const FilterCharacter = ({ setData, setLoading }: Props) => {
 
   return (
     <section className="flex gap-3 items-center justify-between mx-6">
-      <SeachBar name="name" label="Nome" placeholder="Insira o nome do personagem" setChange={setName} />
+      <SeachBar
+        name="name"
+        label="Nome"
+        placeholder="Insira o nome do personagem"
+        setChange={handleChange}
+      />
       <div className="flex gap-3 items-center">
         <Options
-          setChange={setGender}
+          setChange={handleChange}
           label="Gênero"
           name="gender"
           options={[
@@ -45,7 +87,7 @@ const FilterCharacter = ({ setData, setLoading }: Props) => {
           ]}
         />
         <Options
-          setChange={setStatus}
+          setChange={handleChange}
           label="Status"
           name="status"
           options={[
@@ -55,10 +97,16 @@ const FilterCharacter = ({ setData, setLoading }: Props) => {
           ]}
         />
         <Button
-          tooltip='Pesquisar Personagens'
-          label='Pesquisar'
+          icon={<BsSearch />}
+          label="Pesquisar"
           handleClick={handleSubmit}
-         />
+        />
+        <Button
+          icon={<BsXCircle />}
+          label="Limpar"
+          handleClick={clearFilter}
+          type='error'
+        />
       </div>
     </section>
   )

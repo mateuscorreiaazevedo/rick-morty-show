@@ -4,14 +4,16 @@ import Pagination from 'react-js-pagination'
 import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import React from 'react'
+import { useRouter } from 'next/router'
 
 type Props = {
   data: Characters
 }
 
 function Characters ({ data }: Props) {
-  const [characters, setCharacters] = React.useState(data.results)
+  const [characters, setCharacters] = React.useState(data)
   const [loading, setLoading] = React.useState(false)
+  const { push, query, pathname } = useRouter()
   const { setNotification } = useNotification()
   const [page, setPage] = React.useState(1)
 
@@ -19,9 +21,22 @@ function Characters ({ data }: Props) {
     setLoading(true)
 
     try {
-      const response = await characterService.getAll({ page: pageNum })
-      setCharacters(response.results)
+      const response = await characterService.getAll({
+        gender: query.gender?.toString(),
+        page: pageNum,
+        name: query.name?.toString(),
+        status: query.status?.toString()
+      })
+
       setPage(pageNum)
+      setCharacters(response)
+      push({
+        pathname,
+        query: {
+          ...query,
+          page: pageNum
+        }
+      })
     } catch (error) {
       setNotification((error as any).message)
     } finally {
@@ -39,14 +54,15 @@ function Characters ({ data }: Props) {
         <title>Personagens - Rick & Morty Show | Mateus Azevedo</title>
       </Head>
       <article>
-        <section className="flex justify-between items-center">
-          <h1 className="text-4xl text-secondary first-letter:text-primary first-letter:text-5xl font-semibold my-2 dark:first-letter:text-secondary dark:text-primary">
-            Personagens
-          </h1>
-        </section>
-        <FilterCharacter setData={setCharacters} setLoading={setLoading} />
+        <h1 className="text-4xl text-secondary first-letter:text-primary first-letter:text-5xl font-semibold my-2 dark:first-letter:text-secondary dark:text-primary">
+          Personagens
+        </h1>
+        <FilterCharacter
+          setData={setCharacters}
+          setLoading={setLoading}
+        />
         <section className="grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-3 mt-4">
-          {characters.map((character) => (
+          {characters.results.map((character) => (
             <CardCharacter key={character.id} {...character} />
           ))}
         </section>
@@ -58,7 +74,7 @@ function Characters ({ data }: Props) {
             itemClassLast="dark:border-r-primary border-r-secondary border-r-2"
             activeClass="dark:bg-primary bg-secondary text-white"
             activePage={page}
-            totalItemsCount={data.info.count}
+            totalItemsCount={characters.info.count}
             onChange={handleChangePage}
             itemsCountPerPage={20}
           />

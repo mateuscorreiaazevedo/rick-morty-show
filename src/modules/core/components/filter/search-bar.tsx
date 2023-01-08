@@ -3,15 +3,11 @@ import React from 'react'
 type Props = {
   label?: string
   placeholder?: string
-  setChange: React.Dispatch<React.SetStateAction<string>>
+  setChange: (e: React.ChangeEvent<HTMLInputElement|HTMLSelectElement>) => void
   name?: string
 }
 
 export const SeachBar = ({ label, setChange, placeholder, name }: Props) => {
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setChange(e.target.value)
-  }
-
   return (
     <label className="w-full h-20 cursor-pointer">
       <span className="text-lg">{label}:</span>
@@ -19,7 +15,7 @@ export const SeachBar = ({ label, setChange, placeholder, name }: Props) => {
         type="search"
         name={name}
         placeholder={placeholder}
-        onChange={handleChange}
+        onChange={setChange}
         className="
           w-full
           h-10
