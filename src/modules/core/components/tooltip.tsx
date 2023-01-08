@@ -34,9 +34,10 @@ const Tooltip = ({ children, label, isNowrap = false }: Props) => {
           opacity-0
           self-center
           after:-ml-2
-          bg-purple-500
+          bg-secondary
+          dark:bg-primary
           text-center
-          text-lighten
+          text-white
           transition-all
           after:border-8
           after:absolute
@@ -44,7 +45,8 @@ const Tooltip = ({ children, label, isNowrap = false }: Props) => {
           after:bottom-full
           after:border-solid
           after:border-transparent
-          after:border-b-purple-500
+          after:border-b-secondary
+          dark:after:border-b-primary
           peer-hover/tooltip:opacity-100
           ${isNowrap ? 'whitespace-nowrap' : ''}
         `}

@@ -2,12 +2,4 @@
 @tailwind components;
 @tailwind utilities;
 
-.loader {
-  animation: progress 3s linear;
-}
 
-@keyframes progress {
-  0% {
-    transform: translate
-  }
-}

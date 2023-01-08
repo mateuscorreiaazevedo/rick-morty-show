@@ -20,25 +20,19 @@ const routes: Routes[] = [
 const Header = () => {
   const router = useRouter()
 
-  console.log(router.pathname)
-
   return (
     <header
       className="
         w-full
-        h-20
+        h-24
         sticky
         top-0
         flex
-        mb-10
+        z-50
         items-center
-        justify-center
-        bg-primary
-        dark:bg-shadow
-        shadow-md
       "
     >
-      <div className="container flex items-center justify-between">
+      <div className="container px-4 mx-auto rounded-3xl backdrop-blur-sm bg-primary-alpha dark:bg-gray-alpha p-2 flex items-center justify-between">
         <div>
           <Tooltip label="Home">
             <Link href="/">
@@ -53,11 +47,10 @@ const Header = () => {
             </Link>
           </Tooltip>
         </div>
-        <>
-        </>
+        <></>
         <nav>
           <ul className="flex gap-3">
-            {routes.map(route => (
+            {routes.map((route) => (
               <li
                 key={route.label}
                 className="
@@ -67,13 +60,13 @@ const Header = () => {
                   transition-all
                   dark:text-lighten
                   hover:text-secondary
-                  dark:hover:text-secondary
+                  dark:hover:text-primary
                 "
               >
                 <Link
                   href={route.url}
                   className={`
-                    ${router.pathname === route.url ? 'text-secondary' : ''}
+                    ${router.pathname === route.url ? 'text-secondary dark:text-primary' : ''}
                   `}
                 >
                   {route.label}
@@ -86,6 +79,7 @@ const Header = () => {
                     ease-in-out
                     rounded
                     bg-secondary
+                    dark:bg-primary
                     w-0
                     ${router.pathname === route.url ? 'w-4' : ''}
                   `}
@@ -93,7 +87,7 @@ const Header = () => {
               </li>
             ))}
             <li>
-              <SwitchTheme/>
+              <SwitchTheme />
             </li>
           </ul>
         </nav>

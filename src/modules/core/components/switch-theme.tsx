@@ -7,15 +7,15 @@ const SwitchTheme = () => {
   return (
     <div
       onClick={handleTheme}
-      className="
+      className={`
         mx-1
         text-2xl
         transition-all
         cursor-pointer
-        hover:animate-spin
         hover:text-secondary
-        dark:hover:text-secondary
-      "
+        dark:hover:text-primary
+        ${isLight ? 'hover:animate-spin' : 'hover:animate-ping'}
+      `}
     >
       {isLight ? <BsSun /> : <BsMoon />}
     </div>

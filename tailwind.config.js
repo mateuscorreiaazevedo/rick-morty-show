@@ -18,12 +18,13 @@ module.exports = {
     },
     extend: {
       colors: {
-        primary: '#6fe1ff',
-        secondary: '#f67b39',
-        terciary: '#10bba8',
+        primary: '#53aaeb',
+        'primary-alpha': 'rgba(85, 170, 235, 0.5)',
+        secondary: '#e43457',
         darken: '#242424',
         lighten: '#fefe',
-        shadow: '#363636',
+        'gray-scale': '#363636',
+        'gray-alpha': 'rgba(54, 54, 54, 0.6)'
       }
     },
   },
