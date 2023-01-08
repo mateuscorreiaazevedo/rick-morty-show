@@ -28,10 +28,11 @@ const Header = () => {
         sticky
         top-0
         flex
+        z-50
         items-center
       "
     >
-      <div className="container px-4 mx-auto rounded-3xl backdrop-blur-sm bg-primary-alpha dark:bg-gray-scale p-2 flex items-center justify-between">
+      <div className="container px-4 mx-auto rounded-3xl backdrop-blur-sm bg-primary-alpha dark:bg-gray-alpha p-2 flex items-center justify-between">
         <div>
           <Tooltip label="Home">
             <Link href="/">

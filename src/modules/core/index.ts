@@ -1,4 +1,5 @@
 export { default as Tooltip } from './components/tooltip'
+export { default as Spinner } from './components/spinner'
 export { default as Header } from './components/header'
 export { default as Footer } from './components/footer'
 export { default as Service } from './services/service'

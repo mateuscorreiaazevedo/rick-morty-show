@@ -24,6 +24,7 @@ module.exports = {
         darken: '#242424',
         lighten: '#fefe',
         'gray-scale': '#363636',
+        'gray-alpha': 'rgba(54, 54, 54, 0.6)'
       }
     },
   },
