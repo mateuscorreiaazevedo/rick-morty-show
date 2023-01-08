@@ -37,7 +37,7 @@ const Tooltip = ({ children, label, isNowrap = false }: Props) => {
           bg-secondary
           dark:bg-primary
           text-center
-          text-lighten
+          text-white
           transition-all
           after:border-8
           after:absolute

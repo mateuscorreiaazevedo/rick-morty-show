@@ -1,4 +1,4 @@
-import { CardCharacter, characterService } from '@/modules/character'
+import { CardCharacter, characterService, FilterCharacter } from '@/modules/character'
 import { Spinner, useNotification } from '@/modules/core'
 import Pagination from 'react-js-pagination'
 import { GetStaticProps } from 'next'
@@ -40,22 +40,17 @@ function Characters ({ data }: Props) {
       </Head>
       <article>
         <section className="flex justify-between items-center">
-          <h1 className="text-4xl text-secondary first-letter:text-primary first-letter:text-5xl font-semibold my-2">
+          <h1 className="text-4xl text-secondary first-letter:text-primary first-letter:text-5xl font-semibold my-2 dark:first-letter:text-secondary dark:text-primary">
             Personagens
           </h1>
-          <span className="text-xs italic font-light">
-            Página {page}/{data.info.pages}
-          </span>
         </section>
-        <section>filter</section>
+        <FilterCharacter setData={setCharacters} setLoading={setLoading} />
         <section className="grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-3 mt-4">
           {characters.map((character) => (
-              <CardCharacter key={character.id} {...character} />
+            <CardCharacter key={character.id} {...character} />
           ))}
         </section>
-        <section
-          className="flex items-center justify-center mt-10"
-        >
+        <section className="flex items-center justify-center mt-10">
           <Pagination
             innerClass="flex justify-center"
             itemClass="px-3 border-transparent rounded-full py-1 font-semibold"

@@ -13,13 +13,13 @@ const Card = (props: Character) => {
           {id}
         </div>
         <Image
-          className="w-36 rounded-full duration-300 group-hover/card:scale-110 transition-all"
+          className="w-36 mb-2 rounded-full duration-300 group-hover/card:scale-110 transition-all"
           src={image}
           alt={name}
           width={100}
           height={100}
         />
-        <h2 className="inline-block text-center text-xl my-0.5 text-secondary w-40 whitespace-nowrap overflow-hidden  text-ellipsis dark:text-primary">
+        <h2 className="inline-block text-center text-xl my-0.5 text-secondary w-full px-2 whitespace-nowrap overflow-hidden  text-ellipsis dark:text-primary">
           {name}
         </h2>
         <p className="italic font-semibold first-letter:text-xl">{gender}</p>
