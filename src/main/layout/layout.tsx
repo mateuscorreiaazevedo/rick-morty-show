@@ -21,7 +21,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         />
         <title>Rick & Morty Show | Mateus Azevedo</title>
       </Head>
-      <NextNProgress color="#f67b39" />
+      <NextNProgress color="linear-gradient(to top left, #e43457, #53aaeb)" />
       <ToastContainer />
       <Header />
         <main className=" container mx-auto my-4">{children}</main>
