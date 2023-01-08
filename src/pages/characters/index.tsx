@@ -3,17 +3,34 @@ import Pagination from 'react-js-pagination'
 import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import React from 'react'
+import { useNotification } from '@/modules/core'
 
 type Props = {
   data: Characters
 }
 
 function Characters ({ data }: Props) {
-  const [characters] = React.useState(data.results)
+  const [characters, setCharacters] = React.useState(data.results)
+  const [loading, setLoading] = React.useState(false)
+  const { setNotification } = useNotification()
   const [page, setPage] = React.useState(1)
 
   const handleChangePage = async (pageNum: number) => {
-    setPage(pageNum)
+    setLoading(true)
+
+    try {
+      const response = await characterService.getAll({ page: pageNum })
+      setCharacters(response.results)
+      setPage(pageNum)
+    } catch (error) {
+      setNotification((error as any).message)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  if (loading) {
+    return <>Carregando...</>
   }
 
   return (
@@ -31,7 +48,8 @@ function Characters ({ data }: Props) {
         <section className='grid grid-cols-4 gap-3 mt-4'>
           {characters.map(character => (
             <div key={character.id}>
-              {character.name}
+              {character.name},{' '}
+              {character.species}
             </div>
           ))}
         </section>
@@ -54,7 +72,7 @@ function Characters ({ data }: Props) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const data = await characterService.getAll()
+  const data = await characterService.getAll({})
 
   return {
     props: {
