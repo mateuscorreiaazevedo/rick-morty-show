@@ -6,8 +6,8 @@ class EpisodeService extends Service {
     return null
   }
 
-  async getById (id: string) {
-    const response = await this.request<any | Episode | Episode[]>({
+  async getByShowCharacter (id: string) {
+    const response = await this.request<any | Episode[]>({
       url: episodeConstants.GET_BY_ID.replace(':EPISODE_ID', id)
     })
 

@@ -13,17 +13,25 @@ type Props = {
 
 function ShowCharacter ({ data }: Props) {
   const [episodes, setEpisodes] = React.useState<Episode[]>([])
+  const [singleEpisode, setSingleEpisode] = React.useState<Episode>()
   const [loading, setLoading] = React.useState(false)
   const { setNotification } = useNotification()
   const [character] = React.useState(data)
 
   React.useEffect(() => {
     (async () => {
-      const episodeId = character.episode.map((item) => item.split('episode/')[1])
+      const episodesId = character.episode.map((item) => item.split('episode/')[1])
+
+      const id = character.episode.length > 1 ? episodesId.join(',') : episodesId[0]
+
       setLoading(true)
       try {
-        const response = await episodeService.getById(episodeId.join(','))
-        setEpisodes(response)
+        const response = await episodeService.getByShowCharacter(id)
+        if (character.episode.length > 1) {
+          setEpisodes(response)
+        } else {
+          setSingleEpisode(response)
+        }
       } catch (error) {
         setNotification((error as any).message)
       } finally {
@@ -46,7 +54,7 @@ function ShowCharacter ({ data }: Props) {
             href="/characters"
             className="flex items-center justify-around gap-3 text-lg mr-10 px-8 py-2 rounded-lg text-white bg-primary dark:bg-secondary hover:bg-blue-300 dark:hover:bg-pink-600 transition-all"
           >
-            <FaBackspace className='text-2xl'/> Voltar
+            <FaBackspace className="text-2xl" /> Voltar
           </Link>
         </div>
         <div className="absolute top-0 left-0 px-10 bg-secondary dark:bg-primary shadow-lg rounded-tl-lg text-white font-bold text-2xl rounded-br-xl">
@@ -61,9 +69,15 @@ function ShowCharacter ({ data }: Props) {
               )
             : (
             <section className="h-72 scrolling overflow-x-hidden w-fit overflow-y-auto">
-              {episodes.map((episode) => (
+              {episodes.length > 1
+                ? episodes?.map(episode => (
                 <EpisodeCharacter {...episode} key={episode.id} />
-              ))}
+                ))
+                : (
+                <EpisodeCharacter
+                  {...singleEpisode}
+                />
+                  )}
             </section>
               )}
         </div>
