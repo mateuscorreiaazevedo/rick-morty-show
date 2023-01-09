@@ -1,4 +1,3 @@
-import { dateHelper } from '@/modules/core'
 import React from 'react'
 
 const Content = (character: Character) => {
@@ -23,10 +22,6 @@ const Content = (character: Character) => {
       <span className="dark:hover:text-primary hover:text-secondary transition-all">
         <strong className="mr-1 first-letter:text-primary dark:first-letter:text-secondary">Localização Atual:</strong>
         {character.location.name}
-      </span>
-      <span className="dark:hover:text-primary hover:text-secondary transition-all">
-        <strong className="mr-1 first-letter:text-primary dark:first-letter:text-secondary">Criado em:</strong>
-        {dateHelper.default(character.created)}
       </span>
       {character.type && (
         <span className="dark:hover:text-primary hover:text-secondary transition-all">

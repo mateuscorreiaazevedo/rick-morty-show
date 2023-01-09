@@ -1,0 +1,14 @@
+.scrolling {
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #3498d8;
+    border-radius: 8px;
+
+  }
+  &::-webkit-scrollbar-track {
+    padding: 0 5px;
+    background: transparent;
+  }
+}

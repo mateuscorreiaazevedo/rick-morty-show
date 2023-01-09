@@ -1,3 +1,4 @@
+export { default as EpisodeCharacter } from './components/show/episodes'
 export { default as characterConstants } from './constants/character'
 export { default as ShowContent } from './components/show/content'
 export { default as FilterCharacter } from './components/filter'
