@@ -5,6 +5,7 @@ const ShowImage = (character: Character) => {
   return (
     <section className="ml-4 group/character-image">
       <Image
+        loading='lazy'
         className="w-60 mt-4 rounded-xl group-hover/character-image:scale-110 transition-all"
         src={character.image}
         alt={character.name}
