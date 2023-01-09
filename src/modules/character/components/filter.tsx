@@ -55,8 +55,8 @@ const FilterCharacter = ({ setData, setLoading, setPage }: Props) => {
   const clearFilter = async () => {
     setLoading(true)
     try {
+      push(pathname)
       const response = await characterService.getAll({})
-      push({ pathname })
       setData(response)
       setPage(1)
     } catch (error) {
@@ -96,7 +96,7 @@ const FilterCharacter = ({ setData, setLoading, setPage }: Props) => {
             { label: 'Desconhecido', value: 'unknown' }
           ]}
         />
-        <div className="flex gap-2 md:mb-3 lg:mb-0 xl:mb-0">
+        <div className="flex gap-1 lg:ml-1 md:ml-1 ml-0 md:mb-3 lg:mb-0 xl:mb-0">
           <Button icon={<BsSearch />} label="Pesquisar" handleClick={handleSubmit} />
           <Button icon={<BsXCircle />} label="Limpar" handleClick={clearFilter} type="error" />
         </div>
