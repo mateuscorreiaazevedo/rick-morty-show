@@ -1,5 +1,5 @@
 import { characterService, EpisodeCharacter, ShowContent, ShowImage } from '@/modules/character'
-import { Spinner, useNotification } from '@/modules/core'
+import { Button, Spinner, useNotification } from '@/modules/core'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { episodeService } from '@/modules/episodes'
 import Head from 'next/head'
@@ -44,17 +44,16 @@ function ShowCharacter ({ data }: Props) {
     <>
       <Head>
         <title>{character.name} - Rick & Morty Show | Mateus Azevedo</title>
+        <meta name="keywords" content={character.name} />
+        <meta name="description" content={`Página de apresentação do personagem ${character.name}, apresentando seu conteúdo,  como gênero, status, espécie origem e onde se encontra localizado, além de apresentar os episódios no qual ele está presente`} />
       </Head>
       <article className="relative min-h-min my-9 mb-32 dark:bg-gray-scale dark:shadow-darken py-16 px-10 bg-teal-200 rounded-xl shadow-lg shadow-teal-300">
         <div className="flex items-center justify-between">
           <h1 className="text-5xl mt-6 dark:first-letter:text-secondary dark:text-primary first-letter:text-primary text-secondary font-semibold">
             {character.name}
           </h1>
-          <Link
-            href="/characters"
-            className="flex items-center justify-around gap-3 text-lg mr-10 px-8 py-2 rounded-lg text-white bg-primary dark:bg-secondary hover:bg-blue-300 dark:hover:bg-pink-600 transition-all"
-          >
-            <FaBackspace className="text-2xl" /> Voltar
+          <Link href="/characters/list" className="mr-10 text-lg">
+            <Button label="Voltar" icon={<FaBackspace />} type="error" />
           </Link>
         </div>
         <div className="absolute top-0 left-0 px-10 bg-secondary dark:bg-primary shadow-lg rounded-tl-lg text-white font-bold text-2xl rounded-br-xl">
@@ -69,14 +68,15 @@ function ShowCharacter ({ data }: Props) {
               )
             : (
             <section className="h-72 scrolling overflow-x-hidden w-fit overflow-y-auto">
+              <h2 className='text-xl'>
+                Episódios
+              </h2>
               {episodes.length > 1
-                ? episodes?.map(episode => (
-                <EpisodeCharacter {...episode} key={episode.id} />
-                ))
+                ? (
+                    episodes?.map((episode) => <EpisodeCharacter {...episode} key={episode.id} />)
+                  )
                 : (
-                <EpisodeCharacter
-                  {...singleEpisode}
-                />
+                <EpisodeCharacter {...singleEpisode} />
                   )}
             </section>
               )}

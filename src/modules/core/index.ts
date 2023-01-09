@@ -1,3 +1,4 @@
+export { default as Pagination } from './components/pagination'
 export { default as dateHelper } from './utils/date-helper'
 export { default as Tooltip } from './components/tooltip'
 export { default as Spinner } from './components/spinner'

@@ -1,6 +1,5 @@
 import { CardCharacter, characterService, FilterCharacter } from '@/modules/character'
-import { Spinner, useNotification } from '@/modules/core'
-import Pagination from 'react-js-pagination'
+import { Spinner, useNotification, Pagination } from '@/modules/core'
 import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import React from 'react'
@@ -59,15 +58,9 @@ function Characters ({ data }: Props) {
         </section>
         <section className="flex items-center justify-center mt-10">
           <Pagination
-            innerClass="flex justify-center"
-            itemClass="px-3 border-transparent rounded-full py-1 font-semibold"
-            itemClassFirst="dark:border-l-primary border-l-secondary border-l-2"
-            itemClassLast="dark:border-r-primary border-r-secondary border-r-2"
-            activeClass="dark:bg-primary bg-secondary text-white"
-            activePage={page}
-            totalItemsCount={characters.info.count}
-            onChange={handleChangePage}
-            itemsCountPerPage={20}
+            currentPage={page}
+            totalItems={characters.info.count}
+            handlePage={handleChangePage}
           />
         </section>
       </article>

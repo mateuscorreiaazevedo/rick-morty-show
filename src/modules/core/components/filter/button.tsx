@@ -2,7 +2,7 @@ import React from 'react'
 
 type Props = {
   label: string
-  handleClick: () => Promise<void>
+  handleClick?: () => Promise<void>
   icon?: React.ReactNode
   type?: 'default' | 'success' | 'warning'| 'error'
 }
