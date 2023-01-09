@@ -7,3 +7,8 @@ type Episode = {
   url?: string
   created?: string
 }
+
+type Episodes = {
+  results: Episode[]
+  info: Info
+}
