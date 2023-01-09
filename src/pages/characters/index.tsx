@@ -18,8 +18,6 @@ function Characters ({ data }: Props) {
   const [page, setPage] = React.useState(1)
 
   const handleChangePage = async (pageNum: number) => {
-    setLoading(true)
-
     try {
       const response = await characterService.getAll({
         gender: query.gender?.toString(),
@@ -33,8 +31,6 @@ function Characters ({ data }: Props) {
       push({ pathname, query: { ...query, page: pageNum } })
     } catch (error) {
       setNotification((error as any).message)
-    } finally {
-      setLoading(false)
     }
   }
 
@@ -54,6 +50,7 @@ function Characters ({ data }: Props) {
         <FilterCharacter
           setData={setCharacters}
           setLoading={setLoading}
+          setPage={setPage}
         />
         <section className="grid xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-3 mt-4">
           {characters.results.map((character) => (
