@@ -72,7 +72,6 @@ function ShowEpisode ({ data: episode }: Props) {
             {episode.air_date}
           </h3>
         </section>
-        <h3></h3>
         {!loading && <h3 className="mt-10 text-3xl font-semibold">Principais Personagens no Episódio</h3>}
         <section className="grid mt-4 gap-2 xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1">
           {loading && (

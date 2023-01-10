@@ -1,9 +1,116 @@
-import React from 'react'
+import { CardCharacter, characterService } from '@/modules/character'
+import { Button, Spinner, useNotification } from '@/modules/core'
+import { locationService } from '@/modules/locations'
 
-function ShowLocation () {
+import { GetStaticPaths, GetStaticProps } from 'next'
+import Head from 'next/head'
+import Link from 'next/link'
+import React from 'react'
+import { FaBackspace } from 'react-icons/fa'
+
+type Props = {
+  data: Localization
+}
+
+function ShowLocation ({ data: episode }: Props) {
+  const [characterOnEp, setCharacterOnEp] = React.useState<Character[]>([])
+  const [loading, setLoading] = React.useState(false)
+  const { setNotification } = useNotification()
+
+  React.useEffect(() => {
+    (async () => {
+      setLoading(true)
+      const characterId = episode.residents?.map((character) => character.split('character/')[1])
+
+      const id = characterId?.join(',')
+      try {
+        const response = await characterService.getByEpisode(id as string)
+        setCharacterOnEp(response)
+      } catch (error) {
+        setNotification((error as any).message)
+      } finally {
+        setLoading(false)
+      }
+    })()
+  }, [])
+
   return (
-    <div>ShowLocation</div>
+    <>
+      <Head>
+        <title>
+          {episode.name} - Rick & Morty Show | Mateus Azevedo
+        </title>
+      </Head>
+      <article
+        className="
+        my-24
+        bg-teal-200
+        py-6
+        px-10
+        shadow-md
+        rounded-2xl
+        dark:bg-teal-900
+        relative
+      "
+      >
+        <div className="absolute top-0 left-0 px-10 py-1 bg-secondary text-white text-2xl rounded-tl-2xl rounded-br-2xl dark:bg-primary shadow-md">
+          {episode.id}
+        </div>
+        <section className="flex  items-center justify-between">
+          <h1 className="text-5xl font-bold first-letter:text-secondary text-primary dark:text-lighten dark:first-letter:text-primary">
+            {episode?.name}
+          </h1>
+          <Link href="/locations/list" className="pt-3">
+            <Button label="Voltar" icon={<FaBackspace />} type="error" />
+          </Link>
+        </section>
+        <section className="flex items-center justify-between">
+          <h2 className="text-3xl text-gray-400 italic">{episode.dimension}</h2>
+          <h3 className="text-2xl text-gray-400">
+            <strong className="mr-2 text-darken hover:text-secondary transition-all dark:text-lighten dark:hover:text-primary">
+              Type:
+            </strong>
+            {episode.type}
+          </h3>
+        </section>
+        {!loading && <h3 className="mt-10 text-3xl font-semibold">Principais Habitantes</h3>}
+        <section className="grid mt-4 gap-2 xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1">
+          {loading && (
+            <div className="w-full flex justify-center">
+              <Spinner notFull />
+            </div>
+          )}
+          {!loading && characterOnEp?.map((character) => <CardCharacter key={character.id} {...character} />)}
+        </section>
+      </article>
+    </>
   )
+}
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const data = await locationService.getAll({})
+
+  const paths = data.results.map((episode) => ({
+    params: {
+      id: episode.id?.toString()
+    }
+  }))
+
+  return {
+    paths,
+    fallback: true
+  }
+}
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const id = params?.id
+  const data = await locationService.getById(id as string)
+
+  return {
+    props: {
+      data
+    }
+  }
 }
 
 export default ShowLocation
