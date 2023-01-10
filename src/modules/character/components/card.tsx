@@ -14,8 +14,8 @@ const Card = (props: Character) => {
         </div>
         <Image
           className="w-36 mb-2 rounded-full duration-300 group-hover/card:scale-110 transition-all"
-          src={image}
-          alt={name}
+          src={image || '/favicon.ico'}
+          alt={name || 'personagem de Rick & Morty'}
           width={100}
           height={100}
         />
