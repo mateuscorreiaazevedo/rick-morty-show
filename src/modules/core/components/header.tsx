@@ -29,9 +29,11 @@ const Header = () => {
         flex
         z-50
         items-center
+        justify-center
       "
     >
-      <div className="container px-4 mx-auto rounded-3xl backdrop-blur-sm bg-primary-alpha dark:bg-gray-alpha p-2 flex items-center justify-between">
+      <div
+        className="container px-4 mx-auto rounded-3xl backdrop-blur-sm bg-primary-alpha dark:bg-gray-alpha p-2 flex items-center justify-between md:flex-row xl:flex-row lg:flex-row sm:flex-col flex-col">
         <div>
           <Tooltip label="Home">
             <Link href="/">

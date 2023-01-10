@@ -52,7 +52,7 @@ const settings = {
 
 function Home ({ characters, episodes, locations }: Props) {
   return (
-    <article className="mt-10 flex flex-col gap-10">
+    <article>
       <h1
         className="
           text-4xl
@@ -66,7 +66,7 @@ function Home ({ characters, episodes, locations }: Props) {
         Rick & Morty Show!
       </h1>
       <section className="my-10">
-        <Slider {...settings} className="py-3">
+        <Slider arrows={false} {...settings} className="py-3">
           {characters?.map((character) => (
             <CardCharacter key={character.id} {...character} />
           ))}
@@ -79,7 +79,7 @@ function Home ({ characters, episodes, locations }: Props) {
         </Link>
       </section>
       <section className="my-10">
-        <Slider {...settings} className="py-3">
+        <Slider arrows={false} {...settings} className="py-3">
           {locations?.map((location) => (
             <CardLocation key={location.id} {...location} />
           ))}
@@ -92,7 +92,7 @@ function Home ({ characters, episodes, locations }: Props) {
         </Link>
       </section>
       <section className="my-10">
-        <Slider {...settings} className="py-3">
+        <Slider arrows={false} {...settings} className="py-3">
           {episodes?.map((episode) => (
             <CardEpisodes key={episode.id} {...episode} />
           ))}
