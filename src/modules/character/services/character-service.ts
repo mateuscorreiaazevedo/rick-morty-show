@@ -48,6 +48,25 @@ class CharacterService extends Service {
         throw new Error('Erro no sistema, por favor, tente mais tarde')
     }
   }
+
+  async getByEpisode (id: string) {
+    const response = await this.request<any | Character[]>({
+      url: characterConstants.GET_BY_ID.replace(':CHARACTER_ID', id)
+    })
+
+    switch (response.code) {
+      case 200:
+        return response.body
+      case 404:
+        throw new Error(response.body?.error)
+      case 422:
+        throw new Error(response.body?.error)
+      case 500:
+        throw new Error(response.body?.error)
+      default:
+        throw new Error('Tente novamente mais tarde')
+    }
+  }
 }
 
 export const characterService = new CharacterService()
