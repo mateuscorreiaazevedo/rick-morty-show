@@ -1,4 +1,4 @@
-import { Service } from '@/modules/core'
+import { service } from '@/modules/core'
 import { episodeConstants } from '..'
 
 type GetAllProps = {
@@ -7,9 +7,9 @@ type GetAllProps = {
   episode?: string
 }
 
-class EpisodeService extends Service {
+class EpisodeService {
   async getAll ({ page = 1, name, episode }: GetAllProps) {
-    const response = await this.request<{ results: Episode[]; info: Info; error?: string }>({
+    const response = await service.request<{ results: Episode[]; info: Info; error?: string }>({
       url: episodeConstants.GET_URL,
       params: {
         page,
@@ -31,7 +31,7 @@ class EpisodeService extends Service {
   }
 
   async getById (id: string) {
-    const response = await this.request<any | Episode>({
+    const response = await service.request<any | Episode>({
       url: episodeConstants.GET_BY_ID.replace(':EPISODE_ID', id)
     })
     switch (response.code) {
@@ -49,7 +49,7 @@ class EpisodeService extends Service {
   }
 
   async getByShowCharacter (id: string) {
-    const response = await this.request<any | Episode[]>({
+    const response = await service.request<any | Episode[]>({
       url: episodeConstants.GET_BY_ID.replace(':EPISODE_ID', id)
     })
 

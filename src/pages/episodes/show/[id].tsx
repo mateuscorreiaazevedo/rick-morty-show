@@ -1,11 +1,12 @@
 import { CardCharacter, characterService } from '@/modules/character'
 import { Button, Spinner, useNotification } from '@/modules/core'
-import { episodeService } from '@/modules/episodes'
 import { GetStaticPaths, GetStaticProps } from 'next'
+import { episodeService } from '@/modules/episodes'
+import { FaBackspace } from 'react-icons/fa'
+import { useRouter } from 'next/router'
 import Head from 'next/head'
 import Link from 'next/link'
 import React from 'react'
-import { FaBackspace } from 'react-icons/fa'
 
 type Props = {
   data: Episode
@@ -15,6 +16,11 @@ function ShowEpisode ({ data: episode }: Props) {
   const [characterOnEp, setCharacterOnEp] = React.useState<Character[]>([])
   const [loading, setLoading] = React.useState(false)
   const { setNotification } = useNotification()
+  const router = useRouter()
+
+  if (router.isFallback) {
+    return <Spinner />
+  }
 
   React.useEffect(() => {
     (async () => {
@@ -97,7 +103,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths,
-    fallback: false
+    fallback: true
   }
 }
 

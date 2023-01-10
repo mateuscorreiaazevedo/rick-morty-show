@@ -1,4 +1,4 @@
-import { Service } from '@/modules/core'
+import { service } from '@/modules/core'
 import { locationConstants } from '..'
 
 type GetAllProps = {
@@ -8,10 +8,10 @@ type GetAllProps = {
   page?: number
 }
 
-class LocationService extends Service {
+class LocationService {
   async getAll (props: GetAllProps) {
     const { page = 1, dimension, name, type } = props
-    const response = await this.request<{ info: Info; results: Localization[]; error?: string }>({
+    const response = await service.request<{ info: Info; results: Localization[]; error?: string }>({
       url: locationConstants.GET_URL,
       params: {
         page,
@@ -36,7 +36,7 @@ class LocationService extends Service {
   }
 
   async getById (id: string) {
-    const response = await this.request<any | Localization>({
+    const response = await service.request<any | Localization>({
       url: locationConstants.GET_BY_ID.replace(':LOCATION_ID', id)
     })
 

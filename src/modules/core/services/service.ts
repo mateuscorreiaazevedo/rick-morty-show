@@ -14,7 +14,7 @@ export type HttpResponse<T = any> = {
   body: T
 }
 
-export default class Service {
+class Service {
   private api: AxiosInstance
 
   constructor () {
@@ -48,3 +48,5 @@ export default class Service {
     }
   }
 }
+
+export const service = new Service()
