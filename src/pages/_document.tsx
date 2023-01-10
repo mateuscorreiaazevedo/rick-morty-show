@@ -17,7 +17,7 @@ export default function Document () {
           w-full
           min-h-screen
           text-daken
-          bg-green-50
+          bg-teal-100
           dark:bg-darken
           dark:text-lighten
           transition-all

@@ -5,7 +5,7 @@ const Card = (props: Episode) => {
   return (
     <div
       key={props.id}
-      className="relative flex flex-col py-4 px-3 h-52 rounded-xl shadow-md bg-teal-100 hover:bg-teal-200 dark:bg-gray-scale dark:hover:bg-teal-900 transition-all"
+      className=" mx-2 relative flex flex-col py-4 px-3 h-52 rounded-xl shadow-md bg-teal-100 hover:bg-teal-200 dark:bg-gray-scale dark:hover:bg-teal-900 transition-all"
     >
       <span className="absolute top-0 left-0 px-6 py-0.5 rounded-tl-xl rounded-br-xl bg-secondary text-white">
         {props.id}
