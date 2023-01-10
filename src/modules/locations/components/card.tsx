@@ -3,7 +3,7 @@ import React from 'react'
 
 const Card = (props: Localization) => {
   return (
-    <div className="mx-3 relative flex flex-col py-4 px-3 h-56 rounded-xl shadow-md bg-teal-100 hover:bg-teal-200 dark:bg-gray-scale dark:hover:bg-teal-900 transition-all">
+    <div className="mx-3 relative flex flex-col py-4 px-3 h-56 rounded-xl shadow-md bg-slate-200 hover:bg-teal-200 dark:bg-gray-scale dark:hover:bg-teal-900 transition-all">
       <span className="absolute top-0 left-0 px-6 py-0.5 rounded-tl-xl rounded-br-xl bg-secondary text-white">
         {props.id}
       </span>
@@ -21,7 +21,7 @@ const Card = (props: Localization) => {
         </p>
       </div>
       <Link
-        className="group/link-ep text-xl self-center mt-4 hover:tracking-wide transition-all px-2 rounded-sm hover:text-secondary dark:hover:text-primary text-darken dark:text-lighten "
+        className="group/link-ep text-lg self-center mt-4 hover:tracking-wide transition-all px-2 rounded-sm hover:text-secondary dark:hover:text-primary text-darken dark:text-lighten "
         href={`/locations/show/${props.id}`}
       >
         Ir para o episódio

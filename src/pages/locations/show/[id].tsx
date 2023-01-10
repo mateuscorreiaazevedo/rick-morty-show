@@ -6,6 +6,7 @@ import { FaBackspace } from 'react-icons/fa'
 import Head from 'next/head'
 import Link from 'next/link'
 import React from 'react'
+import { useRouter } from 'next/router'
 
 type Props = {
   data: Localization
@@ -16,6 +17,11 @@ function ShowLocation ({ data: location }: Props) {
   const [singleCharacter, setSingleCharacter] = React.useState<Character>()
   const [loading, setLoading] = React.useState(false)
   const { setNotification } = useNotification()
+  const router = useRouter()
+
+  if (router.isFallback) {
+    return <Spinner />
+  }
 
   React.useEffect(() => {
     if (location.residents.length) {
@@ -116,7 +122,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths,
-    fallback: false
+    fallback: true
   }
 }
 

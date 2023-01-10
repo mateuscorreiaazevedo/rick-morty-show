@@ -1,4 +1,4 @@
-import { Service } from '@/modules/core'
+import { service } from '@/modules/core'
 import { characterConstants } from '..'
 
 export type FilterProps = {
@@ -8,9 +8,9 @@ export type FilterProps = {
   gender?: string
 }
 
-class CharacterService extends Service {
+class CharacterService {
   async getAll ({ gender, name, status, page = 1 }: FilterProps) {
-    const response = await this.request<{ results: Character[]; info: Info; error?: string }>({
+    const response = await service.request<{ results: Character[]; info: Info; error?: string }>({
       url: characterConstants.GET_URL,
       params: {
         page,
@@ -33,7 +33,7 @@ class CharacterService extends Service {
   }
 
   async getById (id: string) {
-    const response = await this.request<{ results: Character[]; error?: string }>({
+    const response = await service.request<{ results: Character[]; error?: string }>({
       url: characterConstants.GET_BY_ID.replace(':CHARACTER_ID', id)
     })
 
@@ -50,7 +50,7 @@ class CharacterService extends Service {
   }
 
   async getByEpisode (id: string) {
-    const response = await this.request<any | Character[]>({
+    const response = await service.request<any | Character[]>({
       url: characterConstants.GET_BY_ID.replace(':CHARACTER_ID', id)
     })
 
