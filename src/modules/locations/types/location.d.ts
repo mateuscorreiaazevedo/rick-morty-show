@@ -3,6 +3,6 @@ type Localization = {
   name: string
   type?: string
   dimension?: string
-  residents?: string[]
+  residents: string[]
   created: string
 }

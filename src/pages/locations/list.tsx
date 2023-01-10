@@ -41,7 +41,7 @@ function Locations ({ data }: Props) {
         <section>
           <FilterLocation setData={setLocations} setPage={setPage} setLoading={setLoading} />
         </section>
-        <section className="grid gap-4 my-6 xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1">
+        <section className="grid mx-10 gap-4 my-6 xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1">
           {locations?.results.map(local => (
             <CardLocation key={local.id} {...local} />
           ))}
