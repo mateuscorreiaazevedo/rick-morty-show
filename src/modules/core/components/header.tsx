@@ -13,8 +13,7 @@ type Routes = {
 const routes: Routes[] = [
   { label: 'Personagens', url: '/characters/list' },
   { label: 'Localizações', url: '/locations/list' },
-  { label: 'Episódios', url: '/episodes/list' },
-  { label: 'Sobre', url: '/about' }
+  { label: 'Episódios', url: '/episodes/list' }
 ]
 
 const Header = () => {
