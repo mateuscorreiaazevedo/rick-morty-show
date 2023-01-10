@@ -41,13 +41,13 @@ function ShowEpisode ({ data: episode }: Props) {
         px-10
         shadow-md
         rounded-2xl
-        dark:bg-gray-scale
+        dark:bg-teal-900
         relative
       "
     >
       <div className='absolute top-0 left-0 px-10 py-1 bg-secondary text-white text-2xl rounded-tl-2xl rounded-br-2xl dark:bg-primary shadow-md'>{episode.id}</div>
       <section className="flex  items-center justify-between">
-        <h1 className="text-5xl font-bold first-letter:text-secondary text-primary dark:text-secondary dark:first-letter:text-primary">
+        <h1 className="text-5xl font-bold first-letter:text-secondary text-primary dark:text-lighten dark:first-letter:text-primary">
           {episode?.name}
         </h1>
         <Link href='/episodes/list' className='pt-3'>
